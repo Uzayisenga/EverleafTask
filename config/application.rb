@@ -18,6 +18,7 @@ module Live
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
     config.i18n.default_locale = :ja
+    config.time_zone = "Japan"
 
   end
 end
