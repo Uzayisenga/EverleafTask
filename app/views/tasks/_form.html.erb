@@ -1,0 +1,62 @@
+<%= form_for(task) do |f| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="field">
+  <p>
+  <b>Status</b><br />
+  <%= f.radio_button :status, 'Not started' %> Not started<br />
+  <%= f.radio_button :status, 'Undertaking' %> Undertaking<br />
+  <%= f.radio_button :status, 'Completed' %> Completed<br />
+</p>
+  </div>
+
+  <div class="field">
+  <b>Priority</b>
+  <%= f.select(:priority, options_for_select([['high','high'],['medium','medium'],['low','low']])) %>
+  
+  </div>
+
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+  <%= f.hidden_field :user_id, value: current_user.id %>
+</div>
+  
+
+  <div class="actions">
+    <%= f.submit name="Submit" %>
+  </div>
+<% end %>
+
+
+
+
+
+
