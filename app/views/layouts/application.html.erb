@@ -39,8 +39,8 @@
   <% end %>
 </div>
 
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% flash.each do |names, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{names}" %>
 <% end %>
   
   

@@ -4,7 +4,8 @@ class User < ApplicationRecord
 
   users = User.order(:names).limit(10)
 
-users.each do |user|
-  puts "#{user.tasks.names} user name #{users.names}"
-end
+# users.each do |user|
+#   puts "#{user.tasks.names} user names #{users.names}"
+# end
+validates :email, uniqueness: true
 end
