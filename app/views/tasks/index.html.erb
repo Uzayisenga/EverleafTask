@@ -42,3 +42,19 @@
   </tbody>
 </table>
 
+<div >
+<h3>Sort By</h3><hr>
+<ol>
+<li>
+<%= link_to "Creation date and time", tasks_path(sort_by: "created_at"),class:'btn btn-light' %>
+</li>
+<li>
+<%= link_to "end_date", tasks_path(sort_by: "end_date"),class:'btn btn-light' %>
+</li>
+<li>
+<%= link_to "priority", tasks_path(sort_by: "priority"),class:'btn btn-light' %>
+</li>
+</ol>
+  <br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+

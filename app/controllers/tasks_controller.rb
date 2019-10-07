@@ -12,6 +12,19 @@ class TasksController < ApplicationController
       Task.order('start_date DESC').page params[:page]
     end
   end
+
+  def index
+    @tasks = if params[:term]
+      Task.where('status LIKE ? or name LIKE ?', "%#{params[:term]}%","%#{params[:term]}%").page params[:page]
+    elsif params[:term1]
+      Task.where('names LIKE ?', "%#{params[:term1]}%").page params[:page]
+    elsif params[:term2]
+      Task.where('status LIKE ?', "%#{params[:term2]}%").page params[:page]
+    else
+      #@tasks = Task.all.order('created_at desc').page params[:page]
+      @tasks = Task.order_list(params[:sort_by]).page params[:page]
+    end
+  end
   def task_params
     params.require(:task).permit(:name, :content, :status, :priority, :start_date, :end_date)
   end
