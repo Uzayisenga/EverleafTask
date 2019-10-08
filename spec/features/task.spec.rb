@@ -8,7 +8,7 @@ RSpec.feature "Task management function", type: :feature do
     User.create!(names: "kavuna", email: 'kavuna@gmail.Com', user_type: 'admin',  password: '123456')
     visit  log_in_path
     #click_on 'Login'
-    fill_in  'Email' ,  with: 'kavuna@gmail.Com'
+    fill_in  'Email' ,  with: 'amina@gmail.Com'
     fill_in  'Password' ,  with: '123456'
     click_on  'Log in'
     click_on 'New Task'
