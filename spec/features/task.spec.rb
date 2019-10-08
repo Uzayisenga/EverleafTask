@@ -1,30 +1,18 @@
-# In this require, the feature required for Feature Spec such as Capybara are available.
-require 'rails_helper'
 
-# On the right side of this RSpec.feature, write the test item name like "task management feature" (grouped by do ~ end)
+require 'rails_helper'
 RSpec.feature "Task management function", type: :feature do
-  # In scenario (alias of it), write the processing of the test for each item you want to check.
   background do
-    User.create!(names: "kavuna", email: 'kavuna@gmail.Com', user_type: 'admin',  password: '123456')
+    User.create!(names: "kavuna", email: 'amina@gmail.Com', user_type: 'admin',  password: '123456')
     visit  log_in_path
-    #click_on 'Login'
     fill_in  'Email' ,  with: 'amina@gmail.Com'
     fill_in  'Password' ,  with: '123456'
     click_on  'Log in'
     click_on 'New Task'
       fill_in  'Name' ,  with: 'task1'
       fill_in  'Content' ,  with: 'content1'
-      # fill_in  'Status' ,  with: 'status1'
-      # fill_in  'Priority' ,  with: 'Priority1'
       click_on 'Submit'
   end
   scenario "Test task list" do
-    # visit  signup_path
-    # fill_in  'Name' ,  with: 'new'
-    # fill_in  'Email' ,  with: 'Foo@gmail.Com'
-    # fill_in  'Password' ,  with: '123456'
-    # #fill_in  'ConfirmationPassword' ,  with: '123456'
-    # click_on  'Create'
     
     visit tasks_path
     save_and_open_page
@@ -33,7 +21,6 @@ RSpec.feature "Task management function", type: :feature do
   end
 
   scenario "Test task creation" do
-    # visit to new_task_path (transition to task registration page)
     visit new_task_path
 
    
@@ -70,8 +57,6 @@ RSpec.feature "Task management function", type: :feature do
   scenario 'Test Task Deletion' do
     @task = Task.first
     @task.destroy
-    # expect(page).to have_content('testtesttest')
-    # click_on 'Destroy'
     visit tasks_path
     expect(page).not_to have_content('content1')
   end
@@ -79,8 +64,6 @@ RSpec.feature "Task management function", type: :feature do
     visit tasks_path
     click_on 'New Task'
       fill_in  'Name' ,  with: 'task1'
-      # fill_in  'Status' ,  with: 'status1'
-      # fill_in  'Priority' ,  with: 'Priority1'
       click_on 'Submit'
       expect(page).to have_content(`Name can't be blank`)
 
@@ -89,15 +72,11 @@ RSpec.feature "Task management function", type: :feature do
     click_on 'New Task'
       fill_in  'Name' ,  with: 'task2'
       fill_in  'Content' ,  with: 'content2'
-      # fill_in  'Status' ,  with: 'status2'
-      # fill_in  'Priority' ,  with: 'Priority2'
-      #fill_in  'End date' ,  with: '10.2.2019'
       click_on 'Submit'
       @task = Task.first
       @task_newest = Task.last
       @task_newest.end_date = '10.10.2020'
       @task_newest.save
-      #Task.order('created_at desc').all.expect == [@task_newest, @email]
       task  = Task.order('end_date desc').all
     expect(task).to eq([@task_newest, @task])
   end
@@ -105,15 +84,11 @@ RSpec.feature "Task management function", type: :feature do
     click_on 'New Task'
       fill_in  'Name' ,  with: 'task2'
       fill_in  'Content' ,  with: 'content2'
-      # fill_in  'Status' ,  with: 'status2'
-      # fill_in  'Priority' ,  with: 'Priority2'
-      #fill_in  'End date' ,  with: '10.2.2019'
       click_on 'Submit'
       @task = Task.first
       @task_newest = Task.last
       @task_newest.end_date = '10.10.2020'
       @task_newest.save
-      #Task.order('created_at desc').all.expect == [@task_newest, @email]
       task  = Task.order('end_date desc').all
     expect(task).to eq([@task_newest, @task])
   end
