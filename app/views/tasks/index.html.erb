@@ -5,7 +5,18 @@
   <%= text_field_tag :term %>
   <%= submit_tag 'Search', name: nil, class:"btn btn-outline-success my-2 my-sm-0" %>
 <% end %>
-<%= paginate @tasks %>
+<%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
+  <%= text_field_tag :term1, params[:term1],placeholder:'  search by task name' %>
+  <%= submit_tag ' Search', name: nil %>
+ <% end %>
+ <%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
+  <%= text_field_tag :term2, params[:term2],placeholder:'  search by status' %>
+  <%= submit_tag 'Search', name: nil %>
+ <% end %>
+ <%= form_tag(tasks_path, method: :get,style:'') do %>
+  <%= text_field_tag :term, params[:term],placeholder:'  search by both name or status' %>
+  <%= submit_tag 'Search', name: nil %>
+ <% end %><br>
 <%= paginate @tasks %>
 <table class="table">
   <thead class="thead-dark">

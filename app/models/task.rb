@@ -18,5 +18,15 @@ class Task < ApplicationRecord
         end
       end
 
-    
+    def self.search(term,term1,term2)
+        if term
+          where('name LIKE ?', "%#{term}%")
+        elsif term1
+          where('name LIKE ?', "%#{term1}%")
+        elsif term2
+          where('name LIKE ?', "%#{term2}%")
+        else
+          order('id desc')
+        end
+      end
 end

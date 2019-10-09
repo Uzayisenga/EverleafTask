@@ -17,7 +17,7 @@ class TasksController < ApplicationController
     @tasks = if params[:term]
       Task.where('status LIKE ? or name LIKE ?', "%#{params[:term]}%","%#{params[:term]}%").page params[:page]
     elsif params[:term1]
-      Task.where('names LIKE ?', "%#{params[:term1]}%").page params[:page]
+      Task.where('name LIKE ?', "%#{params[:term1]}%").page params[:page]
     elsif params[:term2]
       Task.where('status LIKE ?', "%#{params[:term2]}%").page params[:page]
     else
@@ -32,7 +32,9 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
   end
-  
+  def search
+    @task =task.search(params[:search])
+  end
 
   # GET /tasks/new
   def new
