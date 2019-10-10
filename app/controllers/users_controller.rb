@@ -54,12 +54,20 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
+    if @user.id == current_user.id
+      redirect_to admin_users_path, notice: "You can not delete signed in user"
+    elsif User.all.count !=1 
+      @user.destroy
+      respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+      end
+      
+    else
+      redirect_to admin_users_path, notice: "You can not delete last admin"
     end
-  end
+  
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
