@@ -95,7 +95,7 @@ RSpec.feature "Task management function", type: :feature do
   scenario "test task search" do
     visit tasks_path
     fill_in  'term' ,  with: 'task1'
-    click_on 'Search'
+    click_on ' Search'
     expect(page).to have_content('content1')
   end
 
