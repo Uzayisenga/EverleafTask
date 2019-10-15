@@ -3,7 +3,7 @@ class Task < ApplicationRecord
     validates :content, presence: true
     validates :status, presence: true
     validates :priority, presence: true
-    paginates_per 3
+    paginates_per 1
     belongs_to :user
     belongs_to :user, :optional => true
     def self.order_list(sort_order) 

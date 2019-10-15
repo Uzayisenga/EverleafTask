@@ -3,15 +3,15 @@ class TasksController < ApplicationController
   before_action :authorize, only: [:new, :edit, :update, :destroy, :user]
   # GET /tasks
   # GET /tasks.json
-  def index
-    #@tasks = Task.order('start_date DESC').page params[:page]
-   # @tasks = Task.search(params[:term])
-    @tasks = if params[:term]
-      Task.where('name LIKE ? or status LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%").page params[:page]
-    else
-      Task.order('start_date DESC').page params[:page]
-    end
-  end
+  # def index
+  #   #@tasks = Task.order('start_date DESC').page params[:page]
+  #  # @tasks = Task.search(params[:term])
+  #   @tasks = if params[:term]
+  #     Task.where('name LIKE ? or status LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%").page params[:page]
+  #   else
+  #     Task.order('start_date DESC').page params[:page]
+  #   end
+  # end
 
   def index
     @tasks = if params[:term]
