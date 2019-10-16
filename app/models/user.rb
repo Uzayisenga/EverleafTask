@@ -10,5 +10,10 @@ class User < ApplicationRecord
 #   puts "#{user.tasks.names} user names #{users.names}"
 # end
 validates :email, uniqueness: true
+def email_uniqueness
+  if AlternateAddress.find_by_email(self.email)
+    self.errors.add(:email, "is already in use by another account")
+  end
+end
 
 end
