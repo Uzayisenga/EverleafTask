@@ -12,4 +12,5 @@ end
 def authorize
    redirect_to log_in_url, alert: "Not authorized" if current_user.nil?
 end
+
 end

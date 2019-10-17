@@ -32,4 +32,4 @@ Deploying on Heroku Steps:
 3. create application on heroku
 4. you do push on heroku
 5. check if the application is on heroku, and find logs
-6s. finaly you run application on browse
+6. finaly you run application on browse
