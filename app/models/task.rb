@@ -3,6 +3,7 @@ class Task < ApplicationRecord
     validates :content, presence: true
     validates :status, presence: true
     validates :priority, presence: true
+    has_and_belongs_to_many :user
     paginates_per 1
     belongs_to :user
     belongs_to :user, :optional => true
