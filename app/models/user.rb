@@ -2,6 +2,7 @@ class User < ApplicationRecord
   paginates_per 5
   has_many :tasks, dependent: :destroy
   has_secure_password
+  has_many :users
   #has_and_belongs_to_many :tasks
 
   users = User.order(:names).limit(10)
