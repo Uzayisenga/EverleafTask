@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_secure_password
   has_many :users
+  has_many :labels
   #has_and_belongs_to_many :tasks
 
   users = User.order(:names).limit(10)

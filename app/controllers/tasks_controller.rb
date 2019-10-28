@@ -21,6 +21,9 @@ class TasksController < ApplicationController
       Task.where('name LIKE ?', "%#{params[:term1]}%").page params[:page]
     elsif params[:term2]
       Task.where('status LIKE ?', "%#{params[:term2]}%").page params[:page]
+    elsif params[:term4]
+      Task.joins(:labels)
+       .where("labels.name ILIKE ?", "%#{params[:term4]}%"). page params[:page]
     else
       #@tasks = Task.all.order('created_at desc').page params[:page]
       @tasks = Task.order_list(params[:sort_by]).page params[:page]
@@ -95,7 +98,7 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :user_id, :content, :status, :priority, :start_date, :end_date)
+      params.require(:task).permit(:name, :user_id, :content, :status, :priority, :start_date, :end_date, label_ids:[])
     end
     def self.search(term)
       if term

@@ -98,7 +98,29 @@ RSpec.feature "Task management function", type: :feature do
     click_on ' Search'
     expect(page).to have_content('content1')
   end
-
+  scenario "test task search by atached labels " do
+    #click_on 'Create Label'
+    visit new_label_path
+    #click_on 'New Label'
+    fill_in 'Name', with: 'label name1'
+    fill_in 'Content', with: 'label content1'
+    click_on 'Create Label'
+    #click_on 'Create Label'
+    #click_on 'New Label'
+    visit new_label_path
+    fill_in 'Name', with: 'label name2'
+    fill_in 'Content', with: 'label content2'
+    click_on 'Create Label'
+    @task = Task.first
+    @label1 = Label.first
+    @label2 = Label.last
+    @task.labels = [@label1,@label2]
+    @task.save
+    visit tasks_path
+    fill_in  'term4' ,  with: 'label name1'
+    click_on '  Search'
+    expect(page).to have_content('content1')
+  end
   
 
 end

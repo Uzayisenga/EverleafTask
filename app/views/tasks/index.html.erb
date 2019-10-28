@@ -10,6 +10,10 @@
   <%= submit_tag 'Search', name: nil %>
  <% end %>
  <%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
+  <%= text_field_tag :term4, params[:term4],placeholder:'  search by label name' %>
+  <%= submit_tag '  Search', name: nil %>
+ <% end %>
+ <%= form_tag(tasks_path, method: :get,style:'float:left;margin-right:3px') do %>
   <%= text_field_tag :term2, params[:term2],placeholder:'  search by status' %>
   <%= submit_tag 'Search', name: nil %>
  <% end %>
@@ -29,6 +33,7 @@
       <th scope="col">Start_date</th>
       <th scope="col">End_date</th>
       <th scope="col">User</th>
+      <th scope="col">Labels</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -43,6 +48,7 @@
       <td><%= task.start_date %></td>
       <td><%= task.end_date %></td>
       <td><%= task.user.names %></td>
+      <td><%= task.labels.size %></td>
       <td>
         <%= link_to 'Show', task, class:"btn btn-primary" %>
         <%= link_to 'Edit', edit_task_path(task), class:"btn btn-success" %>

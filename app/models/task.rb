@@ -3,9 +3,9 @@ class Task < ApplicationRecord
   validates :content, presence: true
   validates :status, presence: true
   validates :priority, presence: true
-  has_many :tasks
+  #has_many :tasks
  # has_and_belongs_to_many :user
-  paginates_per 1
+  paginates_per 5
   belongs_to :user, :optional => true
   def self.order_list(sort_order) 
       if sort_order == "created_at"
@@ -30,4 +30,10 @@ class Task < ApplicationRecord
         order('id desc')
       end
     end
+    has_many :tasks_labels, dependent: :destroy
+    has_many :labels, through: :tasks_labels
+
+    # accepts_nested_attributes_for :tasks_labels, :reject_if => proc { |a|
+    # a['label_id'].blank? }
+    # accepts_nested_attributes_for :labels
 end

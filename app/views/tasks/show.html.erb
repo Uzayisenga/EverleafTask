@@ -30,5 +30,16 @@
   <%= @task.end_date %>
 </p>
 
+<p>
+<p> <h2> Labels attached to this task</h2>
+<% @task.labels.each do |label| %>
+<ul>
+<li class = "user-tasks">
+Title:<%= label.name %> <br/>Content:<%= label.content %>
+</li>
+</ul>
+<% end %>
+</p>
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
